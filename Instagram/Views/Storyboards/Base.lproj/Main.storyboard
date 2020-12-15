@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AsG-vh-ZxT">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -16,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" systemColor="labelColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="7EO-6J-3Xl" kind="relationship" relationship="viewControllers" id="371-ly-YtN"/>
@@ -34,7 +35,7 @@
         <scene sceneID="fXY-r7-UrG">
             <objects>
                 <navigationController id="mxk-Jp-suB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="bell.fill" catalog="system" id="cwm-I3-nHL"/>
+                    <tabBarItem key="tabBarItem" title="" image="heart" catalog="system" id="cwm-I3-nHL"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="814-oI-12V">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -68,7 +69,7 @@
         <scene sceneID="UdW-Ns-VEc">
             <objects>
                 <navigationController id="0Uo-Gf-nCR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="person.fill" catalog="system" id="mcD-QG-OBw"/>
+                    <tabBarItem key="tabBarItem" title="" image="person" catalog="system" id="mcD-QG-OBw"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ixA-5e-tzD">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -85,7 +86,7 @@
         <scene sceneID="G99-AK-r4f">
             <objects>
                 <navigationController id="e8I-4J-p7R" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="globe" catalog="system" id="qiG-pU-7EC"/>
+                    <tabBarItem key="tabBarItem" title="" image="magnifyingglass" catalog="system" id="qiG-pU-7EC"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5Yr-VB-m2m">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -102,7 +103,7 @@
         <scene sceneID="rwk-jD-bnk">
             <objects>
                 <navigationController id="7EO-6J-3Xl" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="house.fill" catalog="system" id="2Wk-4n-8Ju"/>
+                    <tabBarItem key="tabBarItem" title="" image="house" catalog="system" id="2Wk-4n-8Ju"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8L3-k5-DGI">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -197,11 +198,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bell.fill" catalog="system" width="128" height="124"/>
-        <image name="globe" catalog="system" width="128" height="121"/>
-        <image name="house.fill" catalog="system" width="128" height="106"/>
-        <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="house" catalog="system" width="128" height="106"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="person" catalog="system" width="128" height="117"/>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
