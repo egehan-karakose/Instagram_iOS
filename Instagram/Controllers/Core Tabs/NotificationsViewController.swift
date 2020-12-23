@@ -34,7 +34,7 @@ final class NotificationsViewController: UIViewController {
         let spinner = UIActivityIndicatorView(style: .large)
         spinner.hidesWhenStopped = true
         spinner.tintColor = .label
-
+        
         return spinner
     }()
     
@@ -45,7 +45,7 @@ final class NotificationsViewController: UIViewController {
     private var models = [UserNotification]()
     
     //MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,7 +54,7 @@ final class NotificationsViewController: UIViewController {
         
         view.backgroundColor = .systemBackground
         view.addSubview(spinner)
-//        spinner.startAnimating()
+        //        spinner.startAnimating()
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
@@ -68,16 +68,19 @@ final class NotificationsViewController: UIViewController {
         tableView.frame = view.bounds
         spinner.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         spinner.center = view.center
-       
+        
     }
     
     
     
     private func fetchNotifications(){
-        
-        let post = UserPost(identifier: "", postType: .photo, thumbnailImage: URL(string: "https://www.google.com")!, postURL:  URL(string: "https://www.google.com")!, caption: nil, likeCount: [], comments: [], createdDate: Date(), taggedUsers: [])
         for x in 0...100{
-            let model = UserNotification(type: x % 2 == 0 ? .like(post: post) : .follow(state: .not_following) , text: "Hello world", user: User(username: "egehan", bio: "", name: (first: "", last: ""), profilePhoto:URL(string: "https://www.google.com")!, birthdate: Date(), gender: .male, counts: UserCount(followers: 1, following: 1, posts: 1), joinDate: Date()))
+            
+           let user =  User(username: "egehan", bio: "", name: (first: "", last: ""), profilePhoto:URL(string: "https://www.google.com")!, birthdate: Date(), gender: .male, counts: UserCount(followers: 1, following: 1, posts: 1), joinDate: Date())
+            
+            let post = UserPost(identifier: "", postType: .photo, thumbnailImage: URL(string: "https://www.google.com")!, postURL:  URL(string: "https://www.google.com")!, caption: nil, likeCount: [], comments: [], createdDate: Date(), taggedUsers: [], owner: user)
+            
+            let model = UserNotification(type: x % 2 == 0 ? .like(post: post) : .follow(state: .not_following) , text: "Hello world", user: user )
             
             
             models.append(model)
@@ -93,8 +96,8 @@ final class NotificationsViewController: UIViewController {
         
     }
     
-
-
+    
+    
 }
 
 extension NotificationsViewController: UITableViewDelegate, UITableViewDataSource{
@@ -114,16 +117,16 @@ extension NotificationsViewController: UITableViewDelegate, UITableViewDataSourc
             cell.configure(with: model)
             cell.delegate = self
             return cell
-        
+            
         case .follow:
             // follow cell
             let cell = tableView.dequeueReusableCell(withIdentifier: NotificationFollowEventTableViewCell.identifier, for: indexPath) as! NotificationFollowEventTableViewCell
             
-//            cell.configure(with: model)
+            //            cell.configure(with: model)
             cell.delegate = self
             return cell
         }
-       
+        
     }
     
     
@@ -136,8 +139,22 @@ extension NotificationsViewController: UITableViewDelegate, UITableViewDataSourc
 
 extension NotificationsViewController: NotificationLikeEventTableViewCellDelegate {
     func didTapRelatedPostButton(model: UserNotification) {
-        print("Tapped post")
-        // open the post
+        
+        switch model.type {
+        case .like(let post):
+            // open the post
+            let vc  = PostViewController(model: post)
+            vc.title = post.postType.rawValue
+            vc.navigationItem.largeTitleDisplayMode = .never
+            navigationController?.pushViewController(vc, animated: true)
+            
+        case .follow(_):
+            fatalError("Dev Issue: Should never get called")
+            
+        }
+        
+        
+        
     }
     
     
@@ -150,7 +167,7 @@ extension NotificationsViewController: NotificationFollowEventTableViewCellDeleg
         //perform database update
     }
     
- 
+    
     
     
 }

@@ -66,7 +66,7 @@ public class AuthManager{
         if let email = email{
 //            email log in
             Auth.auth().signIn(withEmail: email, password: password) { (authResult, error) in
-                guard authResult != nil, error != nil else {
+                guard authResult != nil, error == nil else {
                     completion(false)
                     return
                 }
